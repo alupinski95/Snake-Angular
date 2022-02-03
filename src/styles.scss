@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0px;
+}
+
+@font-face {
+    font-family: "Snake";
+    src: local("Snake"), url('../src/assets/font/Snake.ttf') format("truetype");
+}
+@font-face {
+    font-family: 'PressStart2p';
+    src: local("PressStart2p"), url('../src/assets/font/PressStart2P-Regular.ttf')
+}

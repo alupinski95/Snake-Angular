@@ -1,0 +1,198 @@
+$start-text-size: 44px;
+
+
+
+@keyframes wheelHueColor {
+
+    from,
+    to {
+        text-shadow:
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            0 0 42px rgb(236, 100, 75),
+            0 0 82px rgb(236, 100, 75),
+            0 0 92px rgb(236, 100, 75),
+            0 0 102px rgb(236, 100, 75),
+            0 0 151px rgb(236, 100, 75);
+    }
+
+    10% {
+        text-shadow:
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            0 0 42px rgb(219, 10, 10),
+            0 0 82px rgb(219, 10, 10),
+            0 0 92px rgb(219, 10, 10),
+            0 0 102px rgb(219, 10, 10),
+            0 0 151px rgb(219, 10, 10);
+    }
+
+    20% {
+        text-shadow:
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            0 0 42px rgb(74, 55, 197),
+            0 0 82px rgb(74, 55, 197),
+            0 0 92px rgb(74, 55, 197),
+            0 0 102px rgb(74, 55, 197),
+            0 0 151px rgb(74, 55, 197);
+    }
+
+    30% {
+        text-shadow:
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            0 0 42px rgb(0, 36, 238),
+            0 0 82px rgb(0, 36, 238),
+            0 0 92px rgb(0, 36, 238),
+            0 0 102px rgb(0, 36, 238),
+            0 0 151px rgb(0, 36, 238);
+    }
+
+    40% {
+        text-shadow:
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            0 0 42px rgb(35, 109, 219),
+            0 0 82px rgb(35, 109, 219),
+            0 0 92px rgb(35, 109, 219),
+            0 0 102px rgb(35, 109, 219),
+            0 0 151px rgb(35, 109, 219);
+    }
+
+    50% {
+        text-shadow:
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            0 0 42px rgb(3, 201, 36),
+            0 0 82px rgb(3, 201, 36),
+            0 0 92px rgb(3, 201, 36),
+            0 0 102px rgb(3, 201, 36),
+            0 0 151px rgb(3, 201, 36);
+    }
+
+    60% {
+        text-shadow:
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            0 0 42px rgb(19, 190, 105),
+            0 0 82px rgb(19, 190, 105),
+            0 0 92px rgb(19, 190, 105),
+            0 0 102px rgb(19, 190, 105),
+            0 0 151px rgb(19, 190, 105);
+    }
+
+    70% {
+        text-shadow:
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            0 0 42px rgb(201, 233, 57),
+            0 0 82px rgb(201, 233, 57),
+            0 0 92px rgb(201, 233, 57),
+            0 0 102px rgb(201, 233, 57),
+            0 0 151px rgb(201, 233, 57);
+    }
+
+    80% {
+        text-shadow:
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            0 0 42px rgb(233, 206, 57),
+            0 0 82px rgb(233, 206, 57),
+            0 0 92px rgb(233, 206, 57),
+            0 0 102px rgb(233, 206, 57),
+            0 0 151px rgb(233, 206, 57);
+    }
+
+    90% {
+        text-shadow:
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            0 0 42px rgb(250, 154, 0),
+            0 0 82px rgb(250, 154, 0),
+            0 0 92px rgb(250, 154, 0),
+            0 0 102px rgb(250, 154, 0),
+            0 0 151px rgb(250, 154, 0);
+    }
+}
+
+.start-screen {
+    background-color: #010a01;
+    width: 100vw;
+    height: 100vh;
+}
+
+.game-logo {
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%, 0%);
+    width: 40vw;
+    height: 40vh;
+    background: url("../../assets/images/wall.png") no-repeat center;
+    border-radius: 20px;
+    border: 2px solid rgb(250, 154, 0);
+    display: flex;
+    align-items: center;
+    box-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px rgb(250, 154, 0),
+        0 0 62px rgb(250, 154, 0),
+        0 0 72px rgb(250, 154, 0),
+        0 0 92px rgb(250, 154, 0),
+        0 0 121px rgb(250, 154, 0);
+
+    .text-logo {
+        font-family: "Snake", Arial, Helvetica, sans-serif;
+        text-align: center;
+        width: 100%;
+        color: white;
+        font-size: $start-text-size*3;
+    }
+}
+
+.display-start-screen {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    transform: translate(-50%, -50%);
+
+    span {
+        color: white;
+        font-size: $start-text-size;
+        vertical-align: middle;
+        -webkit-animation: wheelHueColor 5s infinite;
+        -moz-animation: wheelHueColor 5s infinite;
+        animation: wheelHueColor 5s infinite;
+
+        &.start-text-span {
+            font-size: $start-text-size;
+            margin: 0 10px;
+        }
+    }
+}
+
+.blink-me {
+    -webkit-animation: blinker 1s linear infinite;
+    -moz-animation: blinker 1s linear infinite;
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}

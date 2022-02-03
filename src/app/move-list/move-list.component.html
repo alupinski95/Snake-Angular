@@ -1,0 +1,13 @@
+<div class="row">
+    <select [ngModel]="filterBy" (ngModelChange)="onChange($event)">
+        <option *ngFor="let opt of filters" [value]="opt.value">{{opt.value}}</option>
+    </select>
+    <input type="checkbox" [(ngModel)]="orderAsc" class="checkbox" /> Order Asc
+</div>
+<div class="row">
+    <div *ngFor="let data of listdata | filterByType:selectedFilter | orderBy:orderAsc">
+
+        <div>{{data.instructionName}} {{data.instructionDate}}</div>
+
+    </div>
+</div>

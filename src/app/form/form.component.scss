@@ -1,0 +1,52 @@
+@import 'simple-keyboard/build/css/index.css';
+$color-data:#0bdb0b;
+
+.simple-keyboard {
+    width: 100%;
+}
+
+.user-form {
+    border-radius: 10px;
+    border: 5px solid $color-data;
+    background-color: black;
+    min-height: 45vh;
+    max-height: 50vh;
+    color: $color-data;
+    padding: 1rem 1rem;
+
+    h3 {
+        font-family: "Snake", Arial, Helvetica, sans-serif;
+        padding-bottom: 10px;
+    }
+
+    h3,
+    p {
+        text-align: center;
+    }
+
+    label {
+        width: 100%;
+        font-size: 1.3rem;
+    }
+
+    input {
+        width: 70%;
+        border-radius: 10px;
+        border: 3px solid $color-data;
+        background-color: black;
+        color: $color-data;
+    }
+}
+
+
+.alert {
+    position: relative;
+    padding: 1rem 0;
+    margin-bottom: 0;
+    border: none;
+    border-radius: 0;
+}
+
+.no-alert {
+    margin-bottom: 3.5rem;
+}
