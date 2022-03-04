@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit, Output, EventEmitter, ViewEncapsulatio
 import { ScreenState } from 'src/shared/enums/screenStateEnum';
 import { UserModel } from 'src/shared/models/User';
 import Keyboard from "simple-keyboard";
+import { UserdataService } from 'src/shared/services/userdata.service';
 
 @Component({
   selector: 'app-form',
@@ -10,22 +11,21 @@ import Keyboard from "simple-keyboard";
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  @Output() showGame = new EventEmitter<ScreenState>();
-  @Output() sendFormData = new EventEmitter<UserModel>();
   public keyboard: Keyboard;
   public inputName: any;
   public user: any = { name: '', email: '' }
-  constructor() { }
+  constructor(private userdataService: UserdataService) { }
 
   ngOnInit(): void {
   }
 
   submitForm() {
-    this.showGame.emit(ScreenState.GameScreen);
-    this.sendFormData.emit(this.user);
+    // this.showGame.emit(ScreenState.GameScreen);
+    this.userdataService.userName = this.user.name;
+    this.userdataService.userEmail = this.user.email;
   }
   backButton() {
-    this.showGame.emit(ScreenState.StartScreen);
+    // this.showGame.emit(ScreenState.StartScreen);
   }
 
 

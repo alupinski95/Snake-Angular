@@ -1,5 +1,3 @@
-<div [ngSwitch]="startGame">
-    <app-start-page (showForm)="startGameEmiter($event)" *ngSwitchCase="1"></app-start-page>
-    <app-form (showGame)="startGameEmiter($event)" (sendFormData)="sendFormData($event)" *ngSwitchCase="2"></app-form>
-    <app-game (exitGame)="startGameEmiter($event)" *ngSwitchCase="3" [userData]="user"></app-game>
+<div>
+    <app-start-page></app-start-page>
 </div>

@@ -11,6 +11,7 @@ import { MoveListComponent } from './move-list/move-list.component';
 
 import { OrderByPipe } from 'src/shared/pipes/OrderByPipe/order-by.pipe';
 import { FilterByTypePipe } from 'src/shared/pipes/FilterByTypePipe/filter-by-type.pipe';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FilterByTypePipe } from 'src/shared/pipes/FilterByTypePipe/filter-by-ty
   imports: [
     BrowserModule,
     NgxSnakeModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
