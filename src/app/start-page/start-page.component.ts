@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit, Output, EventEmitter } from '@angular/core';
 import { ScreenState } from 'src/shared/enums/screenStateEnum';
 import { Keyboard } from 'src/shared/enums/keyboardEnum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-start-page',
@@ -8,8 +9,7 @@ import { Keyboard } from 'src/shared/enums/keyboardEnum';
   styleUrls: ['./start-page.component.scss']
 })
 export class StartPageComponent implements OnInit {
-  @Output() showForm = new EventEmitter<ScreenState>();
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -17,7 +17,7 @@ export class StartPageComponent implements OnInit {
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.key == Keyboard.Enter) {
-      this.showForm.emit(ScreenState.FormScreen);
+      this.router.navigate(['/collect-user-data']);
     }
   }
 }

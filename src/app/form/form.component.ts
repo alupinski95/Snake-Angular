@@ -3,6 +3,7 @@ import { ScreenState } from 'src/shared/enums/screenStateEnum';
 import { UserModel } from 'src/shared/models/User';
 import Keyboard from "simple-keyboard";
 import { UserdataService } from 'src/shared/services/userdata.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -14,18 +15,21 @@ export class FormComponent implements OnInit {
   public keyboard: Keyboard;
   public inputName: any;
   public user: any = { name: '', email: '' }
-  constructor(private userdataService: UserdataService) { }
+  constructor(private userdataService: UserdataService,
+    private router:Router) { }
 
   ngOnInit(): void {
   }
 
   submitForm() {
-    // this.showGame.emit(ScreenState.GameScreen);
     this.userdataService.userName = this.user.name;
     this.userdataService.userEmail = this.user.email;
+    this.router.navigate(['/gamesnake']);
+
+
   }
   backButton() {
-    // this.showGame.emit(ScreenState.StartScreen);
+    this.router.navigate(['/']);
   }
 
 

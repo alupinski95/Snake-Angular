@@ -6,6 +6,8 @@ import { GamePlayEventModel } from 'src/shared/models/GamePlayEvent';
 import { UserModel } from 'src/shared/models/User';
 import { interval, Subscription, timer } from 'rxjs';
 import { GameState } from 'src/shared/enums/gameStateEnum';
+import { UserdataService } from 'src/shared/services/userdata.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -22,12 +24,11 @@ export class GameComponent {
   public gameState: GameState = GameState.NotStarted;
   public isStarted: boolean = false;
   public gameStateArray: Array<any>;
-  @Input() userData: UserModel;
   @ViewChild('game') private snake: NgxSnakeComponent;
-  @Output() exitGame = new EventEmitter<ScreenState>();
 
 
-  constructor() {
+  constructor(public userdataService: UserdataService,
+    private router:Router) {
     this.gameStateArray = Object.entries(GameState)
       .map(([key, value]) => ({ key, value }));
   }
@@ -52,7 +53,7 @@ export class GameComponent {
     this.score = 0;
     this.playGameHistory = [];
     this.interval = null;
-    this.exitGame.emit(ScreenState.StartScreen);
+    this.router.navigate(['/']);
   }
 
   public startGameHandler() {
