@@ -18,6 +18,9 @@ const routes: Routes = [
   {
     path: 'gamesnake',
     component: GameComponent,
+  },
+  {
+    path:'**',redirectTo:''
   }
 ]
 
