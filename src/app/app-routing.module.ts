@@ -5,6 +5,7 @@ import { StartPageComponent } from './start-page/start-page.component';
 import { FormComponent } from './form/form.component';
 import { GameComponent } from './game/game.component';
 import { AppComponent } from './app.component';
+import { ScoreListComponent } from './score-list/score-list/score-list.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'gamesnake',
     component: GameComponent,
+  },
+  {
+    path: 'score',
+    component: ScoreListComponent,
   },
   {
     path:'**',redirectTo:''

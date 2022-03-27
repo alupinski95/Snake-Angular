@@ -1,6 +1,4 @@
-import { Component, HostListener, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
-import { ScreenState } from 'src/shared/enums/screenStateEnum';
-import { UserModel } from 'src/shared/models/User';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import Keyboard from "simple-keyboard";
 import { UserdataService } from 'src/shared/services/userdata.service';
 import { Router } from '@angular/router';
