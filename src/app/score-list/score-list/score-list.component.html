@@ -1,1 +1,8 @@
-<p>score-list works!</p>
+<div *ngIf="_scoreFacade.scoreList.length>0">
+    <div *ngFor="let element in _scoreFacade.scoreList">
+        <div class="col-12">
+            <div class="col-10">{{element.name}}</div>
+            <div class="col-2">{{element.score}}</div>
+        </div>
+    </div>
+</div>

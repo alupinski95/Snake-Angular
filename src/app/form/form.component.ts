@@ -2,88 +2,99 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import Keyboard from "simple-keyboard";
 import { UserdataService } from 'src/shared/services/userdata.service';
 import { Router } from '@angular/router';
+import { ScoreFacade } from 'src/shared/facade/score.facade';
+import { Succes } from 'src/shared/models/Succes';
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./form.component.scss']
+    selector: 'app-form',
+    templateUrl: './form.component.html',
+    encapsulation: ViewEncapsulation.None,
+    styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  public keyboard: Keyboard;
-  public inputName: any;
-  public user: any = { name: '', email: '' }
-  constructor(private userdataService: UserdataService,
-    private router:Router) { }
+    public keyboard: Keyboard;
+    public inputName: any;
+    public user: any = { name: '', email: '' }
+    public token: string = "";
 
-  ngOnInit(): void {
-  }
+    constructor(
+        private userdataService: UserdataService,
+        public scoreFacade: ScoreFacade,
+        private router: Router) { }
 
-  submitForm() {
-    this.userdataService.userName = this.user.name;
-    this.userdataService.userEmail = this.user.email;
-    this.router.navigate(['/gamesnake']);
-
-
-  }
-  backButton() {
-    this.router.navigate(['/']);
-  }
-
-
-
-
-
-  ngAfterViewInit() {
-    this.keyboard = new Keyboard({
-      inputName: this.inputName,
-      onChange: input => this.onChange(input),
-      onKeyPress: (button: any) => this.onKeyPress(button),
-      preventMouseDownDefault: true
-    });
-  }
-
-
-  onInputFocus = (event: any) => {
-    this.inputName = event.target.id;
-    this.keyboard.setOptions({
-      inputName: event.target.id
-    });
-  };
-
-  onChange = (input: string) => {
-    this.user[this.inputName] = input;
-
-    let caretPosition = this.keyboard.caretPosition;
-
-    if (caretPosition !== null)
-      this.setInputCaretPosition(
-        document.querySelector(`#${this.inputName}`),
-        caretPosition
-      );
-  };
-
-  setInputCaretPosition = (elem: any, pos: number) => {
-    if (elem.setSelectionRange) {
-      elem.focus();
-      elem.setSelectionRange(pos, pos);
+    ngOnInit(): void {
     }
-  };
 
-  onKeyPress = (button: string) => {
-    if (button === "{shift}" || button === "{lock}") this.handleShift();
-  };
+    submitForm() {
+        this.scoreFacade.checkToken({ token: this.token }).subscribe(
+            (next: Succes) => {
+                this.scoreFacade.isTokenValid = next.success;
+                if (next.success)
+                    this.afterTokenValidateCalback();
+            }
+        );
+    }
 
-  onInputChange = (event: any) => {
-    this.keyboard.setInput(event.target.value);
-  };
+    afterTokenValidateCalback() {
+        this.userdataService.userName = this.user.name;
+        this.userdataService.userEmail = this.user.email;
+        this.router.navigate(['/gamesnake']);
+    }
 
-  handleShift = () => {
-    let currentLayout = this.keyboard.options.layoutName;
-    let shiftToggle = currentLayout === "default" ? "shift" : "default";
+    backButton() {
+        this.router.navigate(['/']);
+    }
 
-    this.keyboard.setOptions({
-      layoutName: shiftToggle
-    });
-  }
+    ngAfterViewInit() {
+        this.keyboard = new Keyboard({
+            inputName: this.inputName,
+            onChange: input => this.onChange(input),
+            onKeyPress: (button: any) => this.onKeyPress(button),
+            preventMouseDownDefault: true
+        });
+    }
+
+
+    onInputFocus = (event: any) => {
+        this.inputName = event.target.id;
+        this.keyboard.setOptions({
+            inputName: event.target.id
+        });
+    };
+
+    onChange = (input: string) => {
+        this.user[this.inputName] = input;
+
+        let caretPosition = this.keyboard.caretPosition;
+
+        if (caretPosition !== null)
+            this.setInputCaretPosition(
+                document.querySelector(`#${this.inputName}`),
+                caretPosition
+            );
+    };
+
+    setInputCaretPosition = (elem: any, pos: number) => {
+        if (elem.setSelectionRange) {
+            elem.focus();
+            elem.setSelectionRange(pos, pos);
+        }
+    };
+
+    onKeyPress = (button: string) => {
+        if (button === "{shift}" || button === "{lock}") this.handleShift();
+    };
+
+    onInputChange = (event: any) => {
+        this.keyboard.setInput(event.target.value);
+    };
+
+    handleShift = () => {
+        let currentLayout = this.keyboard.options.layoutName;
+        let shiftToggle = currentLayout === "default" ? "shift" : "default";
+
+        this.keyboard.setOptions({
+            layoutName: shiftToggle
+        });
+    }
 }

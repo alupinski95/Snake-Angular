@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ScoreChrumService } from 'src/shared/services/scoreservice/score-chrum.service';
+import { ScoreFacade } from 'src/shared/facade/score.facade';
 
 @Component({
   selector: 'app-score-list',
@@ -8,14 +8,10 @@ import { ScoreChrumService } from 'src/shared/services/scoreservice/score-chrum.
 })
 export class ScoreListComponent implements OnInit {
 
-  constructor(private _scoreChrumService:ScoreChrumService) { }
+  constructor(public _scoreFacade: ScoreFacade) { }
 
   ngOnInit(): void {
-    this._scoreChrumService.getScore().subscribe(
-      res => {
-        console.log(res);
-      }
-    )
+    this._scoreFacade.getScoreData();
   }
 
 }

@@ -2,7 +2,7 @@
 
     <div class="row justify-content-center">
 
-        <div [hidden]="userForm.submitted" class="col-4 user-form ">
+        <div [hidden]="userForm.submitted && scoreFacade.isTokenValid" class="col-4 user-form ">
             <h3>Welcome to the NG-Snake!</h3>
             <p>
                 Input your name and email to start the game.
@@ -14,7 +14,7 @@
                     <input type="text" id="name" name="name" required minlength="4"
                         [className]="name.invalid && (name.dirty || name.touched) ? 'form-control':'form-control no-alert'"
                         value={{user.name}} [(ngModel)]="user.name" #name="ngModel" (input)="onInputChange($event)"
-                        (focus)="onInputFocus($event)">
+                        (focus)="onInputFocus($event)" />
                     <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
                         <div *ngIf="name.errors?.['required']">
                             Name is required.
@@ -29,7 +29,7 @@
                     <input type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" mess id="email"
                         name="email" #email="ngModel" (input)="onInputChange($event)" required minlength="6"
                         value={{user.email}} [(ngModel)]="user.email" (focus)="onInputFocus($event)"
-                        class="form-control">
+                        class="form-control" />
                     <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert">
                         <div *ngIf="email.errors?.['required']">
                             Email is required.
@@ -42,8 +42,28 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="token">Token</label>
+                    <input type="text" pattern="\d\d\d\d" id="token" name="token" required minlength="4" value={{token}}
+                        (focus)="onInputFocus($event)" (input)="onInputChange($event)" class="form-control"
+                        #tokenValid="ngModel" [(ngModel)]="token" />
 
+                    <div *ngIf="tokenValid.invalid && (tokenValid.dirty || tokenValid.touched)" class="alert">
+                        <div *ngIf="tokenValid.errors?.['required']">
+                            Token is required.
+                        </div>
+                        <div *ngIf="tokenValid.errors?.['minlength']">
+                            Token must be at least 4 characters long.
+                        </div>
+                        <div *ngIf="tokenValid.errors?.['pattern']">
+                            Token is invalid.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="userForm.submitted && scoreFacade.isTokenValid">
+                Token is invalid.
+            </div>
         </div>
     </div>
 
@@ -61,3 +81,9 @@
         </div>
     </div>
 </form>
+<!-- 
+    TODO:
+    spinner loading 
+    test get score 
+    implementation poist score
+ -->

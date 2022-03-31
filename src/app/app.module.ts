@@ -34,7 +34,7 @@ import { ScoreListComponent } from './score-list/score-list/score-list.component
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [ScoreChrumService,UserdataService],
+  providers: [ScoreChrumService, UserdataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
