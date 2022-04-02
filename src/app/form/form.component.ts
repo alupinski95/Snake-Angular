@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import Keyboard from "simple-keyboard";
 import { UserdataService } from 'src/shared/services/userdata.service';
 import { Router } from '@angular/router';
 import { ScoreFacade } from 'src/shared/facade/score.facade';
 import { Succes } from 'src/shared/models/Succes';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-form',
@@ -11,11 +12,12 @@ import { Succes } from 'src/shared/models/Succes';
     encapsulation: ViewEncapsulation.None,
     styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit,OnDestroy {
     public keyboard: Keyboard;
     public inputName: any;
     public user: any = { name: '', email: '' }
     public token: string = "";
+    private _checkTokenSubscriber$: Subscription;
 
     constructor(
         private userdataService: UserdataService,
@@ -24,9 +26,11 @@ export class FormComponent implements OnInit {
 
     ngOnInit(): void {
     }
-
+    ngOnDestroy(): void {
+        this._checkTokenSubscriber$.unsubscribe();
+    }
     submitForm() {
-        this.scoreFacade.checkToken({ token: this.token }).subscribe(
+        this._checkTokenSubscriber$ = this.scoreFacade.checkToken({ token: this.token }).subscribe(
             (next: Succes) => {
                 this.scoreFacade.isTokenValid = next.success;
                 if (next.success)
