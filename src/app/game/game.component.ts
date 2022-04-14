@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class GameComponent {
   public bw: boolean = false;
-  public boardSize: number = 15;
+  public boardSize: number = 10;
   public score: number = 0;
   public playGameHistory: Array<GamePlayEventModel> = [];
   public time: number = 0;

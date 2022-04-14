@@ -1,5 +1,8 @@
-<div *ngIf="_scoreFacade.scoreList.length>0">
-    <div *ngFor="let element in _scoreFacade.scoreList">
+
+{{scoreList|json}}
+
+<div *ngIf="scoreList.length>0">
+    <div *ngFor="let element in scoreList">
         <div class="col-12">
             <div class="col-10">{{element.name}}</div>
             <div class="col-2">{{element.score}}</div>

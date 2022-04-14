@@ -1,0 +1,47 @@
+$start-text-size: 38px;
+
+
+.start-screen {
+    background-color: #010a01;
+    width: 100vw;
+    height: 100vh;
+}
+
+.game-logo {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 85vw;
+    top: 0.5vh;
+    height: 9.5vh;
+    background: url("../assets/images/wall.png") no-repeat center;
+    border-radius: 20px;
+    border: 2px solid rgb(250, 154, 0);
+    display: block;
+    align-items: center;
+    box-shadow:
+        0 0 1px #fff,
+        0 0 2px #fff,
+        0 0 3px #fff,
+        0 0 4px rgb(250, 154, 0),
+        0 0 5px rgb(250, 154, 0),
+        0 0 6px rgb(250, 154, 0),
+        0 0 7px rgb(250, 154, 0),
+        0 0 8px rgb(250, 154, 0);
+
+    .text-logo {
+        font-family: "Snake", Arial, Helvetica, sans-serif;
+        text-align: center;
+        width: 100%;
+        color: white;
+        margin: 0;
+        font-size: $start-text-size;
+    }
+}
+
+.content-div{
+  width: 100%;
+  height: 90vh;
+}
+
+

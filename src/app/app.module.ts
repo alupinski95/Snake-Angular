@@ -16,6 +16,7 @@ import { ScoreChrumService } from 'src/shared/services/scoreservice/score-chrum.
 import { UserdataService } from 'src/shared/services/userdata.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ScoreListComponent } from './score-list/score-list/score-list.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { ScoreListComponent } from './score-list/score-list/score-list.component
     MoveListComponent,
     FilterByTypePipe,
     OrderByPipe,
-    ScoreListComponent
+    ScoreListComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

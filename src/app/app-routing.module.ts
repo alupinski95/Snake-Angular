@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { StartPageComponent } from './start-page/start-page.component';
 import { FormComponent } from './form/form.component';
 import { GameComponent } from './game/game.component';
-import { AppComponent } from './app.component';
 import { ScoreListComponent } from './score-list/score-list/score-list.component';
+import { UserAuthorizeGuard } from 'src/shared/guards/user-authorize/user-authorize.guard';
 
 const routes: Routes = [
   {
@@ -19,13 +19,15 @@ const routes: Routes = [
   {
     path: 'gamesnake',
     component: GameComponent,
+    canActivate: [UserAuthorizeGuard]
   },
   {
     path: 'score',
     component: ScoreListComponent,
+    // canActivate:[UserAuthorizeGuard]
   },
   {
-    path:'**',redirectTo:''
+    path: '**', redirectTo: ''
   }
 ]
 

@@ -30,7 +30,7 @@ export class FormComponent implements OnInit,OnDestroy {
         this._checkTokenSubscriber$.unsubscribe();
     }
     submitForm() {
-        this._checkTokenSubscriber$ = this.scoreFacade.checkToken({ token: this.token }).subscribe(
+        this._checkTokenSubscriber$ = this.scoreFacade.checkToken({ "auth-token": this.token }).subscribe(
             (next: Succes) => {
                 this.scoreFacade.isTokenValid = next.success;
                 if (next.success)

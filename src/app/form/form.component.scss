@@ -1,4 +1,6 @@
 @import 'simple-keyboard/build/css/index.css';
+@import "../../shared/styles/arcade-styles.scss";
+
 $color-data:#0bdb0b;
 
 .simple-keyboard {
@@ -49,4 +51,7 @@ $color-data:#0bdb0b;
 
 .no-alert {
     margin-bottom: 3.5rem;
+}
+.hg-theme-default .hg-button{
+  height: 30px;
 }
