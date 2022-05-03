@@ -12,25 +12,33 @@ import { MoveListComponent } from './move-list/move-list.component';
 import { OrderByPipe } from 'src/shared/pipes/OrderByPipe/order-by.pipe';
 import { FilterByTypePipe } from 'src/shared/pipes/FilterByTypePipe/filter-by-type.pipe';
 import { AppRoutingModule } from './app-routing.module';
-
+import { ScoreChrumService } from 'src/shared/services/scoreservice/score-chrum.service';
+import { UserdataService } from 'src/shared/services/userdata.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ScoreListComponent } from './score-list/score-list/score-list.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [
-    AppComponent,
-    GameComponent,
-    FormComponent,
-    StartPageComponent,
-    MoveListComponent,
-    FilterByTypePipe,
-    OrderByPipe,
-
-  ],
-  imports: [
-    BrowserModule,
-    NgxSnakeModule,
-    FormsModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        GameComponent,
+        FormComponent,
+        StartPageComponent,
+        MoveListComponent,
+        FilterByTypePipe,
+        OrderByPipe,
+        ScoreListComponent,
+        SpinnerComponent
+    ],
+    imports: [
+        BrowserModule,
+        NgxSnakeModule,
+        FormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule
+    ],
+    providers: [ScoreChrumService, UserdataService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

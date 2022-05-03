@@ -1,3 +1,5 @@
+@import "../../shared/styles/arcade-styles.scss";
+
 $start-text-size: 44px;
 
 
@@ -126,48 +128,13 @@ $start-text-size: 44px;
     }
 }
 
-.start-screen {
-    background-color: #010a01;
-    width: 100vw;
-    height: 100vh;
-}
 
-.game-logo {
-    position: absolute;
-    left: 50%;
-    top: 10%;
-    transform: translate(-50%, 0%);
-    width: 40vw;
-    height: 40vh;
-    background: url("../../assets/images/wall.png") no-repeat center;
-    border-radius: 20px;
-    border: 2px solid rgb(250, 154, 0);
-    display: flex;
-    align-items: center;
-    box-shadow:
-        0 0 7px #fff,
-        0 0 10px #fff,
-        0 0 21px #fff,
-        0 0 42px rgb(250, 154, 0),
-        0 0 62px rgb(250, 154, 0),
-        0 0 72px rgb(250, 154, 0),
-        0 0 92px rgb(250, 154, 0),
-        0 0 121px rgb(250, 154, 0);
-
-    .text-logo {
-        font-family: "Snake", Arial, Helvetica, sans-serif;
-        text-align: center;
-        width: 100%;
-        color: white;
-        font-size: $start-text-size*3;
-    }
-}
 
 .display-start-screen {
     display: inline-block;
     position: absolute;
     left: 50%;
-    top: 75%;
+    top: 50%;
     transform: translate(-50%, -50%);
 
     span {
@@ -179,7 +146,7 @@ $start-text-size: 44px;
         animation: wheelHueColor 5s infinite;
 
         &.start-text-span {
-            font-size: $start-text-size;
+            font-size: $start-text-size*0.7;
             margin: 0 10px;
         }
     }

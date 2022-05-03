@@ -7,7 +7,6 @@ import { GamePlayEventModel } from 'src/shared/models/GamePlayEvent';
 export class OrderByPipe implements PipeTransform {
 
   transform(items: Array<GamePlayEventModel>, orderBy: boolean): any {
-    debugger
     if (!items) {
       return items;
     }
