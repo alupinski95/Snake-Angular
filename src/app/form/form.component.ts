@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ScoreFacade } from 'src/shared/facade/score.facade';
 import { Succes } from 'src/shared/models/Succes';
 import { Subscription } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-form',
@@ -12,24 +13,31 @@ import { Subscription } from 'rxjs';
     encapsulation: ViewEncapsulation.None,
     styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit,OnDestroy {
+export class FormComponent implements OnInit, OnDestroy {
     public keyboard: Keyboard;
     public inputName: any;
-    public user: any = { name: '', email: '' }
     public token: string = "";
     private _checkTokenSubscriber$: Subscription;
+    public userForm: FormGroup;
 
     constructor(
         private userdataService: UserdataService,
         public scoreFacade: ScoreFacade,
-        private router: Router) { }
+        private router: Router,
+        private fb: FormBuilder
+    ) { }
 
     ngOnInit(): void {
+        this.userForm = this.fb.group({
+            name: ['', [Validators.required, Validators.minLength(4)]],
+            email: ['', [Validators.required, Validators.pattern('^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'), Validators.minLength(6)]],
+            token: ['', [Validators.required, Validators.minLength(4), Validators.pattern('\d\d\d\d')]]
+        });
     }
     ngOnDestroy(): void {
         this._checkTokenSubscriber$.unsubscribe();
     }
-    submitForm() {
+    submitForm(form: FormGroup) {
         this._checkTokenSubscriber$ = this.scoreFacade.checkToken({ "auth-token": this.token }).subscribe(
             (next: Succes) => {
                 this.scoreFacade.isTokenValid = next.success;
@@ -40,8 +48,8 @@ export class FormComponent implements OnInit,OnDestroy {
     }
 
     afterTokenValidateCalback() {
-        this.userdataService.userName = this.user.name;
-        this.userdataService.userEmail = this.user.email;
+        this.userdataService.userName = this.userForm.get('name')?.value;
+        this.userdataService.userEmail = this.userForm.get('email')?.value;
         this.router.navigate(['/gamesnake']);
     }
 
@@ -67,7 +75,7 @@ export class FormComponent implements OnInit,OnDestroy {
     };
 
     onChange = (input: string) => {
-        this.user[this.inputName] = input;
+        this.userForm.get(this.inputName)?.setValue(input);
 
         let caretPosition = this.keyboard.caretPosition;
 

@@ -1,108 +1,97 @@
 <!--
     TODO:
-    spinner loading+
-    test get score
+    reactive form test
+    score page styles
     implementation post score
-    reactive form
     menu play game,scores,logout,
     arcade stering
     params in routing
-    guardian+
+    
  -->
 
-
-
 <div class="screen-div center-content">
-  <div class="display-start-screen">
-    <form #userForm="ngForm" class="" appIdentityRevealed (ngSubmit)="submitForm()">
-
-      <div class="row justify-content-center">
-
-        <div [hidden]="userForm.submitted && scoreFacade.isTokenValid" class="col-10 user-form ">
-          <h3>Welcome to the NG-Snake!</h3>
-          <p>
-            Input your name and email to start the game.
-          </p>
-          <div class="col-9 cross-validation offset-md-3"
-            [class.cross-validation-error]="userForm.errors?.['identityRevealed'] && (userForm.touched || userForm.dirty)">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" required minlength="4"
-                [className]="name.invalid && (name.dirty || name.touched) ? 'form-control':'form-control no-alert'"
-                value={{user.name}} [(ngModel)]="user.name" #name="ngModel" (input)="onInputChange($event)"
-                (focus)="onInputFocus($event)" />
-              <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
-                <div *ngIf="name.errors?.['required']">
-                  Name is required.
+    <div class="display-start-screen">
+        <form [formGroup]="userForm" appIdentityRevealed (ngSubmit)="submitForm(userForm)">
+            <div class="row justify-content-center">
+                <div class="col-10 user-form " [hidden]="userForm.valid && scoreFacade.isTokenValid">
+                    <h3>Welcome to the NG-Snake!</h3>
+                    <p>
+                        Input your name, email and token to start the game.
+                    </p>
+                    <div class="col-9 cross-validation offset-md-3"
+                        [class.cross-validation-error]="userForm.errors?.['identityRevealed'] && (userForm.touched || userForm.dirty)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" formControlName="name" (input)="onInputChange($event)"
+                                [className]="'form-control'" (focus)="onInputFocus($event)" />
+                            <div *ngIf="userForm.get('name')?.invalid && (userForm.get('name')?.dirty || userForm.get('name')?.touched)"
+                                class="alert">
+                                <div *ngIf="userForm.get('name')?.hasError('required')">
+                                    Name is required.
+                                </div>
+                                <div *ngIf="userForm.get('name')?.hasError('minlength')">
+                                    Name must be at least 4 characters long.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" formControlName="email" (input)="onInputChange($event)"
+                                (focus)="onInputFocus($event)" [className]="'form-control'" />
+                            <div *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)"
+                                class="alert">
+                                <div *ngIf="userForm.get('email')?.hasError('required')">
+                                    Email is required.
+                                </div>
+                                <div *ngIf="userForm.get('email')?.hasError('minlength')">
+                                    Email must be at least 6 characters long.
+                                </div>
+                                <div *ngIf="userForm.get('email')?.hasError('pattern')">
+                                    Email is invalid.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="token">Token</label>
+                            <input type="text" id="token" formControlName="token" (input)="onInputChange($event)"
+                                [className]="'form-control'" (focus)="onInputFocus($event)" />
+                            <div *ngIf="userForm.get('token')?.invalid && (userForm.get('token')?.dirty || userForm.get('token')?.touched)"
+                                class="alert">
+                                <div *ngIf="userForm.get('token')?.hasError('required')">
+                                    Token is required.
+                                </div>
+                                <div *ngIf="userForm.get('token')?.hasError('minlength')">
+                                    Token must be at least 4 characters long.
+                                </div>
+                                <div *ngIf="userForm.get('token')?.hasError('pattern')">
+                                    Token is invalid.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div *ngIf="name.errors?.['minlength']">
-                  Name must be at least 4 characters long.
-                </div>
-              </div>
             </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" mess id="email" name="email"
-                #email="ngModel" (input)="onInputChange($event)" required minlength="6" value={{user.email}}
-                [(ngModel)]="user.email" (focus)="onInputFocus($event)" class="form-control" />
-              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert">
-                <div *ngIf="email.errors?.['required']">
-                  Email is required.
-                </div>
-                <div *ngIf="email.errors?.['minlength']">
-                  Email must be at least 6 characters long.
-                </div>
-                <div *ngIf="email.errors?.['pattern']">
-                  Email address is invalid.
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="token">Token</label>
-              <input type="text" pattern="\d\d\d\d" id="token" name="token" required minlength="4" value={{token}}
-                (focus)="onInputFocus($event)" (input)="onInputChange($event)" class="form-control"
-                #tokenValid="ngModel" [(ngModel)]="token" />
-
-              <div *ngIf="tokenValid.invalid && (tokenValid.dirty || tokenValid.touched)" class="alert">
-                <div *ngIf="tokenValid.errors?.['required']">
-                  Token is required.
-                </div>
-                <div *ngIf="tokenValid.errors?.['minlength']">
-                  Token must be at least 4 characters long.
-                </div>
-                <div *ngIf="tokenValid.errors?.['pattern']">
-                  Token is invalid.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div *ngIf="userForm.submitted && scoreFacade.isTokenValid">
-            Token is invalid.
-          </div>
-        </div>
-      </div>
-
-
-    </form>
-  </div>
+        </form>
+    </div>
 </div>
 <div class="controls-div-shape center-content">
-  <div class="border-creator">
-    <div class="controls-content">
-    <div class="row justify-content-center">
-      <div class="col-9 align-self-center">
-        <div style="text-align:center">
-          <div class="simple-keyboard"></div>
+    <div class="border-creator">
+        <div class="controls-content">
+            <div class="row justify-content-center">
+                <div class="col-9 align-self-center">
+                    <div style="text-align:center">
+                        <div class="simple-keyboard"></div>
+                    </div>
+                </div>
+                <div class="col-3 space-left">
+                    <button class="button-normal max-size-button" type="submit" [disabled]="userForm.invalid">
+                        Start Game
+                    </button>
+                    <br />
+                    <button class="button-normal max-size-button" (click)="backButton()">Return</button>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="col-3 align-self-center">
-        <button class="button-style green" type="submit" (click)="submitForm()" [disabled]="userForm.invalid">Start Game</button>
-        <button class="button-style red" (click)="backButton()">Back intro page</button>
-      </div>
     </div>
-    </div>
-
-  </div>
 </div>
 <app-spinner [isLoading]="scoreFacade.isLoading"></app-spinner>

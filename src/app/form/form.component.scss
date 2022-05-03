@@ -1,6 +1,6 @@
 @import 'simple-keyboard/build/css/index.css';
 @import "../../shared/styles/arcade-styles.scss";
-
+@import "../../shared/styles/buttons-arcade.scss";
 $color-data:#0bdb0b;
 
 .simple-keyboard {
@@ -11,8 +11,7 @@ $color-data:#0bdb0b;
     border-radius: 10px;
     border: 5px solid $color-data;
     background-color: black;
-    min-height: 45vh;
-    max-height: 58vh;
+    height: 59vh;
     color: $color-data;
     padding: 1rem 1rem;
 
@@ -54,4 +53,23 @@ $color-data:#0bdb0b;
 }
 .hg-theme-default .hg-button{
   height: 30px;
+}
+.space-left{
+    padding-left: 10px;
+}
+.hg-theme-default .hg-button{
+    display: inline-block;
+    font-family: 'PressStart2p';
+    margin-right: 5px;
+    font-weight: bold;
+    background-color: lightgray;
+    text-shadow: -1px -1px black, 1px 1px white;
+    color: gray;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+    box-shadow: 0 .2em gray;
+    margin-bottom: 5px;
+    cursor: pointer;
 }

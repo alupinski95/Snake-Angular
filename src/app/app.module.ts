@@ -17,26 +17,28 @@ import { UserdataService } from 'src/shared/services/userdata.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ScoreListComponent } from './score-list/score-list/score-list.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [
-    AppComponent,
-    GameComponent,
-    FormComponent,
-    StartPageComponent,
-    MoveListComponent,
-    FilterByTypePipe,
-    OrderByPipe,
-    ScoreListComponent,
-    SpinnerComponent
-  ],
-  imports: [
-    BrowserModule,
-    NgxSnakeModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
-  providers: [ScoreChrumService, UserdataService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        GameComponent,
+        FormComponent,
+        StartPageComponent,
+        MoveListComponent,
+        FilterByTypePipe,
+        OrderByPipe,
+        ScoreListComponent,
+        SpinnerComponent
+    ],
+    imports: [
+        BrowserModule,
+        NgxSnakeModule,
+        FormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule
+    ],
+    providers: [ScoreChrumService, UserdataService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
