@@ -16,7 +16,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class FormComponent implements OnInit, OnDestroy {
     public keyboard: Keyboard;
     public inputName: any;
-    public token: string = "";
     private _checkTokenSubscriber$: Subscription;
     public userForm: FormGroup;
 
@@ -38,9 +37,9 @@ export class FormComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this._checkTokenSubscriber$.unsubscribe();
     }
-    submitForm() {
-      debugger
-        this._checkTokenSubscriber$ = this.scoreFacade.checkToken({ "auth-token": this.userForm.get('token')?.value }).subscribe(
+    submitForm(form: FormGroup) {
+        debugger
+        this._checkTokenSubscriber$ = this.scoreFacade.checkToken({ "auth-token": this.tokenForm?.value }).subscribe(
             (next: Succes) => {
                 this.scoreFacade.isTokenValid = next.success;
                 if (next.success)
@@ -50,8 +49,9 @@ export class FormComponent implements OnInit, OnDestroy {
     }
 
     afterTokenValidateCalback() {
-        this.userdataService.userName = this.userForm.get('name')?.value;
-        this.userdataService.userEmail = this.userForm.get('email')?.value;
+        this.userdataService.userName = this.name?.value;
+        this.userdataService.userEmail = this.email?.value;
+        this.userdataService.token = this.tokenForm?.value;
         this.router.navigate(['/menu',this.userForm.get('isBlack')?.value]);
     }
 
@@ -110,5 +110,14 @@ export class FormComponent implements OnInit, OnDestroy {
         this.keyboard.setOptions({
             layoutName: shiftToggle
         });
+    }
+    get name() {
+        return this.userForm.get('name');
+    }
+    get tokenForm() {
+        return this.userForm.get('token');
+    }
+    get email() {
+        return this.userForm.get('email');
     }
 }

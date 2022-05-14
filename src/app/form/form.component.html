@@ -2,102 +2,96 @@
     TODO:
     params in routing
     score page styles
-    implementation post score
     menu play game,scores,logout,
     arcade stering
-
-
  -->
 
+
 <div class="screen-div center-content">
-  <div class="display-start-screen">
-    <form [formGroup]="userForm" appIdentityRevealed (ngSubmit)="submitForm()">
-      <div class="row justify-content-center">
-        <div class="col-10 user-form " [hidden]="userForm.valid && scoreFacade.isTokenValid">
-          <h3>Welcome to the NG-Snake!</h3>
-          <p>
-            Input your name, email and token to start the game.
-          </p>
-          <div class="col-9 cross-validation offset-md-3"
-            [class.cross-validation-error]="userForm.errors?.['identityRevealed'] && (userForm.touched || userForm.dirty)">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" formControlName="name" (input)="onInputChange($event)"
-                [className]="'form-control'" (focus)="onInputFocus($event)" />
-              <div
-                *ngIf="userForm.get('name')?.invalid && (userForm.get('name')?.dirty || userForm.get('name')?.touched)"
-                class="alert">
-                <div *ngIf="userForm.get('name')?.hasError('required')">
-                  Name is required.
+    <div class="display-start-screen">
+        <form [formGroup]="userForm" appIdentityRevealed (ngSubmit)="submitForm(userForm)" id="userForm">
+            <div class="row justify-content-center">
+                <div class="col-10 user-form " [hidden]="userForm.valid && scoreFacade.isTokenValid">
+                    <h3>Welcome to the NG-Snake!</h3>
+                    <p>
+                        Input your name, email and token to start the game.
+                    </p>
+                    <div class="col-9 cross-validation offset-md-3"
+                        [class.cross-validation-error]="userForm.errors?.['identityRevealed'] && (userForm.touched || userForm.dirty)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" formControlName="name" (input)="onInputChange($event)"
+                                [className]="'form-control'" (focus)="onInputFocus($event)" />
+                            <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert">
+                                <div *ngIf="name?.hasError('required')">
+                                    Name is required.
+                                </div>
+                                <div *ngIf="name?.hasError('minlength')">
+                                    Name must be at least 4 characters long.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" formControlName="email" (input)="onInputChange($event)"
+                                (focus)="onInputFocus($event)" [className]="'form-control'" />
+                            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="alert">
+                                <div *ngIf="email?.hasError('required')">
+                                    Email is required.
+                                </div>
+                                <div *ngIf="email?.hasError('minlength')">
+                                    Email must be at least 6 characters long.
+                                </div>
+                                <div *ngIf="email?.hasError('pattern')">
+                                    Email is invalid.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="token">Token</label>
+                            <input type="text" id="token" formControlName="token" (input)="onInputChange($event)"
+                                [className]="'form-control'" (focus)="onInputFocus($event)" />
+                            <div *ngIf="tokenForm?.invalid && (tokenForm?.dirty || tokenForm?.touched)" class="alert">
+                                <div *ngIf="tokenForm?.hasError('required')">
+                                    Token is required.
+                                </div>
+                                <div *ngIf="tokenForm?.hasError('minlength')">
+                                    Token must be at least 4 characters long.
+                                </div>
+                                {{tokenForm?.hasError('pattern')}}
+                                <div *ngIf="tokenForm?.hasError('pattern')">
+                                    Token is invalid.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" id="isBlack" formControlName="isBlack" /> Dark mode
+                        </div>
+                    </div>
                 </div>
-                <div *ngIf="userForm.get('name')?.hasError('minlength')">
-                  Name must be at least 4 characters long.
-                </div>
-              </div>
             </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" formControlName="email" (input)="onInputChange($event)"
-                (focus)="onInputFocus($event)" [className]="'form-control'" />
-              <div
-                *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)"
-                class="alert">
-                <div *ngIf="userForm.get('email')?.hasError('required')">
-                  Email is required.
-                </div>
-                <div *ngIf="userForm.get('email')?.hasError('minlength')">
-                  Email must be at least 6 characters long.
-                </div>
-                <div *ngIf="userForm.get('email')?.hasError('pattern')">
-                  Email is invalid.
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="token">Token</label>
-              <input type="text" id="token" formControlName="token" (input)="onInputChange($event)"
-                [className]="'form-control'" (focus)="onInputFocus($event)" />
-              <div
-                *ngIf="userForm.get('token')?.invalid && (userForm.get('token')?.dirty || userForm.get('token')?.touched)"
-                class="alert">
-                <div *ngIf="userForm.get('token')?.hasError('required')">
-                  Token is required.
-                </div>
-                <div *ngIf="userForm.get('token')?.hasError('minlength')">
-                  Token must be at least 4 characters long.
-                </div>
-                <div *ngIf="userForm.get('token')?.hasError('pattern')">
-                  Token is invalid.
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <input type="checkbox" id="isBlack" formControlName="isBlack" (input)="onInputChange($event)" /> Dark mode
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
+        </form>
+    </div>
 </div>
 <div class="controls-div-shape center-content">
-  <div class="border-creator">
-    <div class="controls-content">
-      <div class="row justify-content-center">
-        <div class="col-9 align-self-center">
-          <div style="text-align:center">
-            <div class="simple-keyboard"></div>
-          </div>
+    <div class="border-creator">
+        <div class="controls-content">
+            <div class="row justify-content-center">
+                <div class="col-9 align-self-center">
+                    <div style="text-align:center">
+                        <div class="simple-keyboard"></div>
+                    </div>
+                </div>
+                <div class="col-3 space-left">
+                    <button class="button-normal max-size-button" type="submit" form="userForm"
+                        [disabled]="userForm.invalid">
+                        Start Game
+                    </button>
+                    <br />
+                    <button class="button-normal max-size-button" (click)="backButton()">Return</button>
+                </div>
+            </div>
         </div>
-        <div class="col-3 space-left">
-          <button class="button-normal max-size-button" type="submit" [disabled]="userForm.invalid" (click)="submitForm()">
-            Start Game
-          </button>
-          <br />
-          <button class="button-normal max-size-button" (click)="backButton()">Return</button>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
 <app-spinner [isLoading]="scoreFacade.isLoading"></app-spinner>

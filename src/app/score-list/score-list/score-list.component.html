@@ -1,11 +1,27 @@
+<!-- {{scoreList|json}} -->
 
-{{scoreList|json}}
 
-<div *ngIf="scoreList.length>0">
-    <div *ngFor="let element in scoreList">
-        <div class="col-12">
-            <div class="col-10">{{element.name}}</div>
-            <div class="col-2">{{element.score}}</div>
+<div class="screen-div center-content">
+    <div class="display-start-screen">
+        <div *ngIf="scoreList.length>0" class="scrollable-score-list">
+            <div *ngFor="let element of scoreList">
+                <div class="row">
+                    <div class="col-9">{{element.name}}</div>
+                    <div class="col-3">{{element.score}}</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="controls-div-shape center-content">
+    <div class="border-creator">
+        <div class="controls-content">
+            <div class="row justify-content-center">
+                <div class="col-3 space-left">
+                    <button class="button-normal max-size-button" (click)="backButton()">Return</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

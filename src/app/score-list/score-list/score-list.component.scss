@@ -1,0 +1,11 @@
+@import "../../../shared/styles/arcade-styles.scss";
+@import "../../../shared/styles/buttons-arcade.scss";
+
+div{
+    color: white;
+}
+.scrollable-score-list{
+    overflow: scroll;
+    overflow-x: visible;
+    height: 59vh;
+}
