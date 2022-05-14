@@ -6,6 +6,7 @@ import { FormComponent } from './form/form.component';
 import { GameComponent } from './game/game.component';
 import { ScoreListComponent } from './score-list/score-list/score-list.component';
 import { UserAuthorizeGuard } from 'src/shared/guards/user-authorize/user-authorize.guard';
+import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
     {
@@ -17,14 +18,19 @@ const routes: Routes = [
         component: FormComponent,
     },
     {
-        path: 'gamesnake',
+      path: 'menu/:isBlack',
+      component: MenuComponent,
+      canActivate: [UserAuthorizeGuard]
+    },
+    {
+        path: 'gamesnake/:isBlack',
         component: GameComponent,
         canActivate: [UserAuthorizeGuard]
     },
     {
         path: 'score',
         component: ScoreListComponent,
-        // canActivate: [UserAuthorizeGuard]
+        canActivate: [UserAuthorizeGuard]
     },
     {
         path: '**', redirectTo: ''

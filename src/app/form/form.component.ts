@@ -30,15 +30,17 @@ export class FormComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.userForm = this.fb.group({
             name: ['', [Validators.required, Validators.minLength(4)]],
-            email: ['', [Validators.required, Validators.pattern('^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'), Validators.minLength(6)]],
-            token: ['', [Validators.required, Validators.minLength(4), Validators.pattern('\d\d\d\d')]]
+            email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"), Validators.minLength(6)]],
+            isBlack: [false],
+            token: ['', [Validators.required, Validators.minLength(4), Validators.pattern('^[0-9]{4}')]]
         });
     }
     ngOnDestroy(): void {
         this._checkTokenSubscriber$.unsubscribe();
     }
-    submitForm(form: FormGroup) {
-        this._checkTokenSubscriber$ = this.scoreFacade.checkToken({ "auth-token": this.token }).subscribe(
+    submitForm() {
+      debugger
+        this._checkTokenSubscriber$ = this.scoreFacade.checkToken({ "auth-token": this.userForm.get('token')?.value }).subscribe(
             (next: Succes) => {
                 this.scoreFacade.isTokenValid = next.success;
                 if (next.success)
@@ -50,7 +52,7 @@ export class FormComponent implements OnInit, OnDestroy {
     afterTokenValidateCalback() {
         this.userdataService.userName = this.userForm.get('name')?.value;
         this.userdataService.userEmail = this.userForm.get('email')?.value;
-        this.router.navigate(['/gamesnake']);
+        this.router.navigate(['/menu',this.userForm.get('isBlack')?.value]);
     }
 
     backButton() {

@@ -37,6 +37,10 @@ $color-data:#0bdb0b;
         background-color: black;
         color: $color-data;
     }
+    input[type='checkbox']{
+      width: 10px;
+      margin-top: 5px;
+    }
 }
 
 
@@ -47,7 +51,9 @@ $color-data:#0bdb0b;
     border: none;
     border-radius: 0;
 }
-
+button{
+  font-size: 20px;
+}
 .no-alert {
     margin-bottom: 3.5rem;
 }
@@ -70,6 +76,8 @@ $color-data:#0bdb0b;
     -o-border-radius: 7px;
     border-radius: 7px;
     box-shadow: 0 .2em gray;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     cursor: pointer;
+    font-size: 10px ;
+
 }

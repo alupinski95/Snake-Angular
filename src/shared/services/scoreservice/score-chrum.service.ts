@@ -17,10 +17,11 @@ export class ScoreChrumService {
 
   private httpOptions = {
     headers: new HttpHeaders({
-      "Accept": 'application/json'
+      'accept': 'application/json',
+      'Content-Type': 'application/json'
     })
   };
-
+//curl -X POST "http://scores.chrum.it/check-token" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"auth-token\":\"1234\"}"
   private options = {
 
   }

@@ -1,0 +1,13 @@
+@import "../../shared/styles/arcade-styles.scss";
+$color-data:#0bdb0b;
+p{
+    color:$color-data ;
+    text-align: center;
+    font-family: "Snake", Arial, Helvetica, sans-serif;
+}
+.display-start-screen{
+  height: 100%;
+  position: relative;
+  top: 50%;
+  transform: translate(0%, -15%);
+}

@@ -6,11 +6,12 @@
         <div class="row">
           <div class="col-6">Score: {{score}}</div>
           <div class="col-5" style="text-align: right;">Timer: {{time }} s</div>
-          <ngx-snake #game [boardHeight]="boardSize" [boardWidth]="boardSize" [class.black-and-white]="bw"
+          <ngx-snake #game [boardHeight]="boardSize" [boardWidth]="boardSize"
+            [ngClass]="{'black-and-white': isBlack,'white': !isBlack}"
+
             (foodEaten)="onGrow()" (gameOver)="onGameOver()"></ngx-snake>
 
         </div>
-
       </div>
       <div class="col-5 play-history">
         <span>Game state: {{gameStateArray[gameState].value}}</span>

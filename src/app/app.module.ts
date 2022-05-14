@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ScoreListComponent } from './score-list/score-list/score-list.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MenuComponent } from './menu/menu.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -28,7 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         FilterByTypePipe,
         OrderByPipe,
         ScoreListComponent,
-        SpinnerComponent
+        SpinnerComponent,
+        MenuComponent
     ],
     imports: [
         BrowserModule,

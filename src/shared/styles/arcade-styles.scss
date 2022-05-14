@@ -11,8 +11,8 @@
 }
 
 .screen-div{
-  border-left: 2px solid rgb(250, 154, 0);
-  border-right: 2px solid rgb(250, 154, 0);
+  border-left: 4px solid rgb(250, 154, 0);
+  border-right: 4px solid rgb(250, 154, 0);
   width: 75vw;
   top: 1vh;
   height: 59vh;
@@ -26,21 +26,19 @@
   border-bottom: 30vh solid rgb(250, 154, 0);
 	border-left: 5vw solid transparent;
 	border-right: 5vw solid transparent;
-  border-radius: 10px;
+
 
   .border-creator{
-    width: calc(85vw - 4px);
-    height:  calc(30vh - 10px);
-    margin-left: calc(-5vw + 2px);
+    width: calc(85vw - 8px);
+    height: calc(30vh - -3px);
+    margin-left: calc(-5vw + 4px);
     padding-top: 2px;
-    border-radius: 10px;
     border-bottom: calc(30vh - 2px) solid #000;
     border-left: 5vw solid transparent;
     border-right: 5vw solid transparent;
     .controls-content{
       width: 100%;
-      padding: 15px;
-      // padding: 0 5vw;
+      padding: 15px 15px 0px 15px;
     }
   }
 }

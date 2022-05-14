@@ -15,3 +15,25 @@ $color-data:#0bdb0b;
 .row h3 {
     text-align: center;
 }
+::ng-deep ngx-snake {
+  &.black-and-white{
+      ngx-snake-tile {
+          background: #ffffff;
+          &.free {
+              div {
+                  background: #ffffff;
+              }
+          }
+
+          &.head,
+          &.tail,
+          &.food,
+          &.body {
+              div {
+                  border: 2px solid yellow;
+                  background: #000000;
+              }
+          }
+      }
+  }
+}
