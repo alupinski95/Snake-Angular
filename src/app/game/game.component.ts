@@ -1,13 +1,11 @@
-import { Component, Input, EventEmitter, Output, ViewChild, OnDestroy } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { NgxSnakeComponent } from 'ngx-snake';
 import { GameAction } from 'src/shared/enums/gameActionsEnum';
-import { ScreenState } from 'src/shared/enums/screenStateEnum';
 import { GamePlayEventModel } from 'src/shared/models/GamePlayEvent';
-import { UserModel } from 'src/shared/models/User';
-import { interval, Observable, Subscription, timer } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { GameState } from 'src/shared/enums/gameStateEnum';
 import { UserdataService } from 'src/shared/services/userdata.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ScoreFacade } from 'src/shared/facade/score.facade';
 
 @Component({
@@ -16,35 +14,34 @@ import { ScoreFacade } from 'src/shared/facade/score.facade';
     styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnDestroy {
-  public bw: boolean = false;
-  public boardSize: number = 10;
-  public score: number = 0;
-  public playGameHistory: Array<GamePlayEventModel> = [];
-  public time: number = 0;
-  public timeCounter: number = 0;
-  public gameState: GameState = GameState.NotStarted;
-  public isStarted: boolean = false;
-  public gameStateArray: Array<any>;
-  @ViewChild('game') private snake: NgxSnakeComponent;
-  public isBlack: boolean = false;
-  private routeParamsSubscibtion: Subscription;
+    public boardSize: number = 10;
+    public score: number = 0;
+    public playGameHistory: Array<GamePlayEventModel> = [];
+    public time: number = 0;
+    public timeCounter: number = 0;
+    public gameState: GameState = GameState.NotStarted;
+    public isStarted: boolean = false;
+    public gameStateArray: Array<any>;
+    @ViewChild('game') private snake: NgxSnakeComponent;
+    public isBlack: boolean = false;
+    private routeParamsSubscibtion: Subscription;
 
-  constructor(public userdataService: UserdataService,
-    private router:Router,
-    private route: ActivatedRoute) {
-      //isBlack
-    this.gameStateArray = Object.entries(GameState)
-      .map(([key, value]) => ({ key, value }));
-      this.routeParamsSubscibtion = this.route.params.subscribe(params => {
-        this.isBlack = params['isBlack']==="true";
-     });
-  }
+    constructor(public userdataService: UserdataService,
+        private scoreFacade: ScoreFacade,
+        private router: Router,
+        private route: ActivatedRoute) {
+        this.gameStateArray = Object.entries(GameState)
+            .map(([key, value]) => ({ key, value }));
+        this.routeParamsSubscibtion = this.route.params.subscribe(params => {
+            this.isBlack = params['isBlack'] === "true";
+        });
+    }
 
-  ngOnDestroy() {
-    this.routeParamsSubscibtion.unsubscribe();
-  }
+    ngOnDestroy() {
+        this.routeParamsSubscibtion.unsubscribe();
+    }
 
-  public interval: any;
+    public interval: any;
 
     public onGrow() {
         this.playGameHistory.push(new GamePlayEventModel(GameAction.ActionGrow, this.time));
