@@ -38,7 +38,6 @@ export class FormComponent implements OnInit, OnDestroy {
         this._checkTokenSubscriber$.unsubscribe();
     }
     submitForm(form: FormGroup) {
-        debugger
         this._checkTokenSubscriber$ = this.scoreFacade.checkToken({ "auth-token": this.tokenForm?.value }).subscribe(
             (next: Succes) => {
                 this.scoreFacade.isTokenValid = next.success;

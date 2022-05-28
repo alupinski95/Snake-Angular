@@ -14,7 +14,7 @@ export class StartPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @HostListener('document:keypress', ['$event'])
+  @HostListener('window:keydown.enter', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.key == Keyboard.Enter) {
       this.router.navigate(['/collect-user-data']);

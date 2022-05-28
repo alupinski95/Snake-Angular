@@ -59,7 +59,7 @@ export class GameComponent implements OnDestroy {
             'auth-token': this.userdataService.token
         }).subscribe(
             (next: JSON) => {
-                debugger
+
             }
         )
         alert('game over');

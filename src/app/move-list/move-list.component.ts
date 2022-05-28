@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { GameAction } from 'src/shared/enums/gameActionsEnum';
 import { GamePlayEventModel } from 'src/shared/models/GamePlayEvent';
 
@@ -14,6 +14,7 @@ interface FilterElement {
 })
 export class MoveListComponent implements OnInit {
   public selectedFilter: string = "";
+
   public filterBy: FilterElement;
   public filters: Array<FilterElement>;
   public orderAsc: boolean = true;
@@ -22,6 +23,7 @@ export class MoveListComponent implements OnInit {
   constructor() {
     this.createFilters();
   }
+
 
   private createFilters() {
     this.filters = Object.entries(GameAction)
@@ -34,5 +36,6 @@ export class MoveListComponent implements OnInit {
   }
   ngOnInit(): void {
   }
+
 
 }

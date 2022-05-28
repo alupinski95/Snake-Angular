@@ -19,6 +19,7 @@ import { ScoreListComponent } from './score-list/score-list/score-list.component
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
+import { MainViewComponent } from './main-view/main-view.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -30,7 +31,8 @@ import { MenuComponent } from './menu/menu.component';
         OrderByPipe,
         ScoreListComponent,
         SpinnerComponent,
-        MenuComponent
+        MenuComponent,
+        MainViewComponent
     ],
     imports: [
         BrowserModule,

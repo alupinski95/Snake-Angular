@@ -1,19 +1,23 @@
+<app-main-view>
 
-
-<div class="screen-div center-content">
-  <div class="display-start-screen">
-    <p (click)="gameRedirect()"><span class="blink-me neonText">&gt;</span>Play<span class="blink-me neonText">&lt;</span></p>
-    <p (click)="scoreRedirect()">Score</p>
-    <p (click)="exitRedirect()">Exit</p>
-  </div>
-</div>
-<div class="controls-div-shape center-content">
-  <div class="border-creator">
-    <div class="controls-content">
-
-    </div>
-  </div>
-</div>
+    <div lcd-display>
+        <p (click)="gameRedirect()">
+          <span *ngIf="selectedMenuItem===1" class="blink-me neonText">&gt;</span>
+          Play
+          <span *ngIf="selectedMenuItem===1" class="blink-me neonText">&lt;</span>
+        </p>
+        <p (click)="scoreRedirect()">
+          <span *ngIf="selectedMenuItem===2" class="blink-me neonText">&gt;</span>
+          Score
+          <span *ngIf="selectedMenuItem===2" class="blink-me neonText">&lt;</span>
+        </p>
+        <p (click)="exitRedirect()">
+          <span *ngIf="selectedMenuItem===3" class="blink-me neonText">&gt;</span>
+          Exit
+          <span *ngIf="selectedMenuItem===3" class="blink-me neonText">&lt;</span>
+        </p>
+      </div>
+</app-main-view>
 
 
 

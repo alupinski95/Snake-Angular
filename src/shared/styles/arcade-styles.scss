@@ -10,6 +10,14 @@
   position: relative;
 }
 
+.display-start-screen > *{
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .screen-div{
   border-left: 4px solid rgb(250, 154, 0);
   border-right: 4px solid rgb(250, 154, 0);
