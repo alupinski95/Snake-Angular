@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class ScoreChrumService {
     private apiUrl: any = (endpoint: string) => { return `https://scores.chrum.it/${endpoint}` };
-    private getScoreUrl: string = "scores";
+    private getScoreUrl: string = "scores/snake";
     private postScoreUrl: string = this.getScoreUrl + "/";
     private checkTokenUrl: string = "check-token";
     private secretScoreKey: string = environment.secretScoreKey;
@@ -32,7 +32,7 @@ export class ScoreChrumService {
         return this._http.get<Score[]>(this.apiUrl(this.getScoreUrl), this.httpOptions);
     }
     postScore(score: Score): Observable<JSON> {
-        // score.name += this.secretScoreKey;
+        score.name += "⁤";
         return this._http
             .post<JSON>(this.apiUrl(this.postScoreUrl), score, this.httpOptions)
 

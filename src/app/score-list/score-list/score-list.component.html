@@ -1,7 +1,8 @@
 <!-- {{scoreList|json}} -->
 <app-main-view>
   <div lcd-display *ngIf="scoreList.length>0" class="scrollable-score-list">
-    <div *ngFor="let element of scoreList">
+    <input type="checkbox" [(ngModel)]="isGlobalScore" class="checkbox" /> Global/Local score
+    <div *ngFor="let element of scoreList | filterByUnicode:isGlobalScore">
         <div class="row">
             <div class="col-9">{{element.name}}</div>
             <div class="col-3">{{element.score}}</div>

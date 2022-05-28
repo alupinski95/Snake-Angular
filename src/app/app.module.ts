@@ -20,6 +20,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
 import { MainViewComponent } from './main-view/main-view.component';
+import { FilterByUnicodePipe } from '../shared/pipes/FilterByUnicode/filter-by-unicode.pipe';
 @NgModule({
     declarations: [
         AppComponent,
@@ -32,7 +33,8 @@ import { MainViewComponent } from './main-view/main-view.component';
         ScoreListComponent,
         SpinnerComponent,
         MenuComponent,
-        MainViewComponent
+        MainViewComponent,
+        FilterByUnicodePipe
     ],
     imports: [
         BrowserModule,

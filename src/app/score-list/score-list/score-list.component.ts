@@ -10,6 +10,7 @@ import { Score } from 'src/shared/models/Score';
 })
 export class ScoreListComponent implements OnInit {
     public scoreList: Array<Score> = [];
+    public isGlobalScore:boolean = true;
     constructor(
         private router: Router, public _scoreFacade: ScoreFacade) {
         this._scoreFacade.getScoreData().subscribe(
